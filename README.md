@@ -215,12 +215,28 @@ interface Permissions {
 
 Check api.js for more details about editorConfig.
 
-/\*\*
-_ 详情见 api.js 中的 editorConfig，如果传入值包含 user，customization，该值会被单独传入的覆盖
-_/
-editorConfig: {
-type: Object as PropType<VOnlyOffice.EditorConfig>,
-},
+```typescript
+export interface EditorConfig {
+  actionLink?: ActionLink;
+  mode?: Mode;
+  lang?: string;
+  location?: string;
+  canCoAuthoring?: boolean;
+  createUrl?: string;
+  sharingSettingsUrl?: string;
+  fileChoiceUrl?: string;
+  callbackUrl?: string;
+  saveAsUrl?: string;
+  licenseUrl?: string;
+  customerId?: string;
+  region?: string;
+  user?: User;
+  recent?: Recent[];
+  templates?: Template[];
+  customization?: Customization;
+  plugins?: Plugins;
+}
+```
 
 ### events
 
