@@ -1,11 +1,329 @@
-# Vue 3 + Typescript + Vite
+# V-Only-Office
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Features
 
-## Recommended IDE Setup
+1. A Vue3 component of OnlyOffice
+2. Support Typescript with declaration
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+## Install
 
-## Type Support For `.vue` Imports in TS
+### npm
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+```bash
+npm insatll v-only-office
+```
+
+### yarn
+
+```bash
+yarn add v-only-office
+```
+
+### pnpm
+
+```bash
+pnpm add v-only-office
+```
+
+## Usage
+
+```vue
+<template>
+  <VOnlyOffice :identifier="identifier1" file-type="docx" />
+</template>
+<script setup lang="ts">
+import { VOnlyOffice } from "v-only-office";
+const identifier1 = {
+  key: "file_key",
+  url: "https://documentServer/Document.docx",
+};
+</script>
+```
+
+## Param
+
+### identifier
+
+The identifier of the document, which will override only-office config.document.key and config.document.url.
+
+This is a required param.
+
+```typescript
+const identifier1 = {
+  key: "file_key",
+  url: "https://documentServer/Document.docx",
+};
+```
+
+### fileType
+
+Document type suffix.
+
+This is a required param.
+
+```typescript
+type FileType =
+  | "xls"
+  | "xlsx"
+  | "ods"
+  | "csv"
+  | "xlst"
+  | "xlsy"
+  | "gsheet"
+  | "xlsm"
+  | "xlt"
+  | "xltm"
+  | "xltx"
+  | "fods"
+  | "ots"
+  | "pps"
+  | "ppsx"
+  | "ppt"
+  | "pptx"
+  | "odp"
+  | "pptt"
+  | "ppty"
+  | "gslides"
+  | "pot"
+  | "potm"
+  | "potx"
+  | "ppsm"
+  | "pptm"
+  | "fodp"
+  | "otp"
+  | "doc"
+  | "docx"
+  | "doct"
+  | "odt"
+  | "gdoc"
+  | "txt"
+  | "rtf"
+  | "pdf"
+  | "mht"
+  | "htm"
+  | "html"
+  | "epub"
+  | "djvu"
+  | "xps"
+  | "docm"
+  | "dot"
+  | "dotm"
+  | "dotx"
+  | "fodt"
+  | "ott"
+  | "fb2"
+  | "xml";
+```
+
+### articleTitle
+
+The title of the document
+
+```vue
+<template>
+  <VOnlyOffice
+    :identifier="identifier1"
+    file-type="docx"
+    article-title="I am A Document"
+  />
+</template>
+```
+
+### mode
+
+The operation type of the only-office.
+
+If you pass `view` in, `document.permissions.edit` will be set `false`.
+
+default value `edit`;
+
+```typescript
+type Mode = "view" | "edit";
+```
+
+### callbackUrl
+
+If mode `edit`, `callbackUrl` must be passed.
+
+```typescript
+type CallbackUrl = string;
+```
+
+### documentType
+
+The layout of onlyoffice.
+
+```typescript
+type DocumentType = "word" | "cell" | "slide";
+```
+
+### token
+
+token
+
+```typescript
+type Token = string;
+```
+
+### document
+
+Check api.js for more details about document.
+
+```typescript
+interface Document {
+  title?: string;
+  url?: string;
+  fileType?: FileType;
+  options?: any;
+  key?: string;
+  vkey?: string;
+  info?: Info;
+  permissions?: Permissions;
+}
+```
+
+### permissions
+
+Check api.js for more details about permission.
+
+This param will overwrite the permissions of document that you pass.
+
+```typescript
+interface Permissions {
+  edit?: boolean;
+  download?: boolean;
+  reader?: boolean;
+  review?: boolean;
+  print?: boolean;
+  comment?: boolean;
+  modifyFilter?: boolean;
+  modifyContentControl?: boolean;
+  fillForms?: boolean;
+  copy?: boolean;
+  editCommentAuthorOnly?: boolean;
+  deleteCommentAuthorOnly?: boolean;
+  reviewGroups?: string[];
+}
+```
+
+### editorConfig
+
+Check api.js for more details about editorConfig.
+
+/\*\*
+_ 详情见 api.js 中的 editorConfig，如果传入值包含 user，customization，该值会被单独传入的覆盖
+_/
+editorConfig: {
+type: Object as PropType<VOnlyOffice.EditorConfig>,
+},
+
+### events
+
+The Callback Functions of only-office, check api.js for more detail about events.
+
+```typescript
+interface Events {
+  onAppReady?: Function;
+  onDocumentStateChange?: Function;
+  onDocumentReady?: Function;
+  onRequestEditRights?: Function;
+  onRequestHistory?: Function;
+  onRequestHistoryData?: Function;
+  onRequestRestore?: Function;
+  onRequestHistoryClose?: Function;
+  onError?: Function;
+  onWarning?: Function;
+  onInfo?: Function;
+  onOutdatedVersion?: Function;
+  onDownloadAs?: Function;
+  onRequestSaveAs?: Function;
+  onCollaborativeChanges?: Function;
+  onRequestRename?: Function;
+  onMetaChange?: Function;
+  onRequestClose?: Function;
+  onMakeActionLink?: Function;
+  onRequestUsers?: Function;
+  onRequestSendNotify?: Function;
+  onRequestInsertImage?: Function;
+  onRequestCompareFile?: Function;
+  onRequestSharingSettings?: Function;
+  onRequestCreateNew?: Function;
+}
+```
+
+### user
+
+User information for cooperate document.
+
+User param will overwrite the user of editorConfig that you pass.
+
+```typescript
+interface User {
+  id?: string;
+  name?: string;
+  group?: string;
+}
+```
+
+### customization
+
+Particular configurations about only-office, check api.js for more detail about events.
+
+User param will overwrite the customization of editorConfig that you pass.
+
+```typescript
+interface Customization {
+  logo?: Logo;
+  customer?: Customer;
+  about?: boolean;
+  feedback?: Feedback;
+  goback?: GoBack;
+  reviewPermissions?: ReviewPermissions;
+  anonymous?: Anonymous;
+  chat?: boolean;
+  comments?: boolean;
+  zoom?: number;
+  compactToolbar?: boolean;
+  leftMenu?: boolean;
+  rightMenu?: boolean;
+  hideRightMenu?: boolean;
+  toolbar?: boolean;
+  statusBar?: boolean;
+  autosave?: boolean;
+  forcesave?: boolean;
+  showReviewChanges?: boolean;
+  help?: boolean;
+  compactHeader?: boolean;
+  toolbarNoTabs?: boolean;
+  toolbarHideFileName?: boolean;
+  reviewDisplay?: string;
+  spellcheck?: boolean;
+  compatibleFeatures?: boolean;
+  unit?: "cm" | "pt" | "inch";
+  mentionShare?: boolean;
+  macros?: boolean;
+  plugins?: boolean;
+  macrosMode?: "warn" | "enable" | "disable";
+  trackChanges?: undefined | boolean;
+  hideRulers?: boolean;
+}
+```
+
+### config
+
+The full config of only-office.
+
+Any other param will overwrite it. (It means that this parameter has the lowest priority)
+
+```typescript
+export interface Config {
+  type?: string;
+  width?: string;
+  height?: string;
+  documentType?: DocumentType;
+  token?: string;
+  document?: Document;
+  editorConfig?: EditorConfig;
+  events?: Events;
+}
+```

@@ -1,7 +1,7 @@
 {
   "name": "v-only-office",
   "author": "Xmo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "main": "dist/v-only-office.umd.js",
   "module": "dist/v-only-office.es.js",
@@ -9,6 +9,15 @@
   "files": [
     "dist/*"
   ],
+  "homepage": "https://github.com/darkXmo/v-only-office",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darkXmo/v-only-office"
+  },
+  "bugs": {
+    "url": "https://github.com/darkXmo/v-only-office/issues",
+    "email": "xmolan0718@gmail.com"
+  },
   "scripts": {
     "dev": "vite",
     "commit": "git add . && git status && git-cz",
