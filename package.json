@@ -1,7 +1,7 @@
 {
   "name": "v-only-office",
   "author": "Xmo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "main": "dist/v-only-office.umd.js",
   "module": "dist/v-only-office.es.js",

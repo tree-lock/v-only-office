@@ -1,5 +1,10 @@
 # V-Only-Office
 
+<p align="center">
+  <a href="https://github.com/darkXmo/v-only-office/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/v-only-office.svg?sanitize=true" alt="npm"></a>
+  <a href="https://www.npmjs.com/package/v-only-office"><img src="https://img.shields.io/npm/v/v-only-office.svg?sanitize=true" alt="gzip size"></a>
+</p>
+
 ## Features
 
 1. A Vue3 component of OnlyOffice
