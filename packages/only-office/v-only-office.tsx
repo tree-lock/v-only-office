@@ -120,6 +120,11 @@ export default defineComponent({
       ) as HTMLDivElement;
       containerEle.innerHTML = `<div id="${contentId}"></div>`;
       const config = initConfig(props);
+      if (!window.DocsAPI) {
+        throw new Error(
+          'Please import onlyoffice api.js script | 请引入OnlyOffice api.js的Script标签'
+        );
+      }
       return new window.DocsAPI.DocEditor(contentId, config);
     };
 
