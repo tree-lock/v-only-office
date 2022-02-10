@@ -104,10 +104,12 @@ export default defineComponent({
       type: Object as PropType<VOnlyOffice.Config>,
     },
   },
-  setup(props) {
+  emits: ['init'],
+  setup(props, context) {
     let officeEditor: VOnlyOffice.IDocEditor;
     onMounted(() => {
       officeEditor = init();
+      context.emit('init', officeEditor);
     });
     /** 初始化唯一文档DomID */
     const documentId = Math.floor(Math.random() * 10000) + new Date().getTime();

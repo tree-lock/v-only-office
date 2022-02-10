@@ -1,5 +1,50 @@
 namespace VOnlyOffice {
-  export type IDocEditor = any;
+  export interface IDocEditor {
+    attachMouseEvents: () => any;
+    denyEditingRights: (message?: any) => any;
+    destroyEditor: (cmd?: any) => any;
+    detachMouseEvents: () => any;
+    downloadAs: (data?: any) => any;
+    findAllTexts: (
+      text?: any,
+      highlight?: any,
+      isMatchCase?: any,
+      iShadow?: boolean
+    ) => any;
+    findText: (
+      text?: any,
+      highlight?: any,
+      isNext?: any,
+      isMatchCase?: any,
+      iShadow?: boolean
+    ) => any;
+    highlightTexts: (
+      isTransparent?: boolean,
+      R?: boolean,
+      G?: boolean,
+      B?: boolean
+    ) => any;
+    insertImage: (data?: any) => any;
+    processMailMerge: (enabled?: any, message?: any) => any;
+    processRightsChange: (enabled?: any, message?: any) => any;
+    processSaveResult: (result?: any, message?: any) => any;
+    refreshHistory: (data?: any, message?: any) => any;
+    removeSelection: () => any;
+    replaceAllTexts: (text?: any, replaceWith?: any, isMatchCase?: any) => any;
+    replaceText: (text?: any, replaceWith?: any, isMatchCase?: any) => any;
+    serviceCommand: (command?: any, data?: any) => any;
+    setActionLink: (data?: any) => any;
+    setEmailAddresses: (data?: any) => any;
+    setFavorite: (data?: any) => any;
+    setHistoryData: (data?: any, message?: any) => any;
+    setMailMergeRecipients: (data?: any) => any;
+    setRevisedFile: (data?: any) => any;
+    setSharingSettings: (data?: any) => any;
+    setTextColor: (color?: any) => any;
+    setUsers: (data?: any) => any;
+    showMessage: (title?: any, msg?: any) => any;
+    showSharingSettings: (data?: any) => any;
+  }
   export interface Config {
     type?: string;
     width?: string;
@@ -181,7 +226,14 @@ namespace VOnlyOffice {
 
   export interface Events {
     onAppReady?: Function;
-    onDocumentStateChange?: Function;
+    onDocumentStateChange?: (event: {
+      /** true: 开始保存
+       * false: 保存完毕 */
+      data: boolean;
+      target: {
+        frameOrigin: string;
+      };
+    }) => void;
     onDocumentReady?: Function;
     onRequestEditRights?: Function;
     onRequestHistory?: Function;
