@@ -7,7 +7,4 @@ console.log('Current version: ', chalk.blue(pack.version));
 const version = await question('Please input new version: \n');
 pack.version = version;
 await fs.writeFile('package.json', JSON.stringify(pack, null, 2));
-await $`git add . && git commit -m "feat: version ${version}" && git push`;
-await $`nrm use npm`;
 await $`npm publish`;
-await $`nrm use taobao`;
