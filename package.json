@@ -1,7 +1,7 @@
 {
   "name": "v-only-office",
   "author": "Xmo",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "license": "MIT",
   "main": "dist/v-only-office.umd.js",
   "module": "dist/v-only-office.es.js",
@@ -25,16 +25,19 @@
     "prepare": "husky install",
     "preview": "vite preview"
   },
-  "dependencies": {
+  "peerDependencies": {
+    "@vue/compiler-sfc": ">=3.1.0",
+    "vue": ">=3.1.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
     "@types/node": "^17.0.15",
     "@vitejs/plugin-vue": "^2.0.0",
     "sass": "^1.49.7",
     "typescript": "^4.4.4",
     "vite": "^2.7.2",
     "vue": "^3.2.25",
-    "vue-tsc": "^0.29.8"
-  },
-  "devDependencies": {
+    "vue-tsc": "^0.29.8",
     "@commitlint/cli": "^16.0.2",
     "@commitlint/config-conventional": "^16.0.0",
     "@vitejs/plugin-vue-jsx": "^1.3.3",
@@ -42,9 +45,7 @@
     "git-cz": "^4.8.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.7",
-    "prettier": "^2.5.1",
-    "rollup": "^2.67.1",
-    "rollup-plugin-typescript2": "^0.31.2"
+    "prettier": "^2.5.1"
   },
   "config": {
     "commitizen": {
