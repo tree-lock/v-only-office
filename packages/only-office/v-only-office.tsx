@@ -117,10 +117,6 @@ export default defineComponent({
     const contentId = `of-${documentId}`;
 
     const init = () => {
-      const containerEle = document.getElementById(
-        containerId
-      ) as HTMLDivElement;
-      containerEle.innerHTML = `<div id="${contentId}"></div>`;
       const config = initConfig(props);
       if (!window.DocsAPI) {
         throw new Error(
