@@ -130,8 +130,22 @@ export default defineComponent({
       officeEditor.destroyEditor();
     });
     return () => (
-      <div id={containerId} style="height: 100%;">
-        <div id={contentId}></div>
+      <div class="ocr-canvas">
+        <img ref="imgRef" class="img" src={img} onLoad={handleLoad} />
+        <div id="container"></div>
+        <div class="tools">
+          <ul>
+            <li>
+              <button onClick={zoomIn}>+</button>
+            </li>
+            <li>
+              <button onClick={zoomOut}>-</button>
+            </li>
+            <li>
+              <button onClick={log}>=</button>
+            </li>
+          </ul>
+        </div>
       </div>
     );
   },
